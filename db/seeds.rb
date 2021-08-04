@@ -1,15 +1,15 @@
 Team.destroy_all
-Team.reset_pk_sequence
+# Team.reset_pk_sequence
 Player.destroy_all
-Player.reset_pk_sequence
+# Player.reset_pk_sequence
 Tournament.destroy_all
-Tournament.reset_pk_sequence
+# Tournament.reset_pk_sequence
 
 
-t1 = Team.create(name: "SL", logo_url:)1, tournament_id:1)
-t2 = Team.create(name: "IND", logo_url:2, tournament_id:2)
-t3 = Team.create(name: "AUS", logo_url:1, tournament_id:2)
-t4 = Team.create(name: "PAK", logo_url:3, tournament_id:3)
+t1 = Team.create(name: "SL", logo_url:"N/A")
+t2 = Team.create(name: "IND", logo_url:"N/A")
+t3 = Team.create(name: "AUS", logo_url:"N/A")
+t4 = Team.create(name: "PAK", logo_url:"N/A")
 
 tou1 = Tournament.create(name: "T20", venue: "Colombo")
 tou2 = Tournament.create(name: "ODI", venue: "Kandy")
