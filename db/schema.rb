@@ -18,12 +18,13 @@ ActiveRecord::Schema.define(version: 2021_08_03_214902) do
     t.string "skill"
     t.string "playing_category"
     t.string "country"
+    t.integer "team_id"
+    t.integer "tournament_id"
   end
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
-    t.integer "player_id"
-    t.integer "tournament_id"
+    t.string "logo_url"
   end
 
   create_table "tournaments", force: :cascade do |t|

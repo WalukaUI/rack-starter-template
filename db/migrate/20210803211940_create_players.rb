@@ -6,6 +6,8 @@ class CreatePlayers < ActiveRecord::Migration[5.2]
     t.string :skill
     t.string :playing_category
     t.string :country
+    t.integer :team_id
+    t.integer :tournament_id
     end
   end
 end
