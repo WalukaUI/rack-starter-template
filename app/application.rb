@@ -45,7 +45,36 @@ class Application
           [ { error: 'Player not found' }.to_json ]
         ]
       end
-
+    elsif req.path == "/players" && req.delete?
+      iD = req.path.split('/')[2]
+      begin 
+        person=Player.find(iD)
+        person.destroy
+        return [200,{'Content-Type' => 'application/json'}, [{message: "Player Destroyed"}.to_json]]
+      rescue
+        return [404,{'Content-Type' => 'application/json'}, [{message: "Player Not Found"}.to_json]]
+      end
+      tournaments=Tournament.all
+      return [200, 
+      { 'Content-Type' => 'application/json' }, 
+      [  tournaments.to_json ]]
+    elsif req.path.match(/teams/) && req.get?
+      iD = req.path.split('/')[2]
+      team=Team.find_by(id: iD)
+      teams_players=team.players
+      if team
+        return [
+          200,
+          { 'Content-Type' => 'application/json' },
+          [  teams_players.to_json ]
+        ]
+      else
+        return [
+          204, 
+          { 'Content-Type' => 'application/json' },
+          [ { error: 'Players not found' }.to_json ]
+        ]
+      end
 
 
     else
