@@ -54,6 +54,26 @@ class Application
       rescue
         return [404,{'Content-Type' => 'application/json'}, [{message: "Player Not Found"}.to_json]]
       end
+
+    elsif req.path.match('/players/') && req.patch?
+        id = req.path.split('/')[2]
+        body = JSON.parse(req.body.read)
+        begin
+          player=Player.find(id)
+          player.update(body)
+          return [202, {'Content-Type' => 'application/json'}, [player.to_json]]
+        rescue
+          return [404,{'Content-Type' => 'application/json'}, [{message: "Player Not Found"}.to_json]]
+        end
+    elsif req.path.match("/players") && req.post?
+        body = JSON.parse(req.body.read)
+        newPlayer=Player.create(body)
+        return [
+          200, 
+          { 'Content-Type' => 'application/json' }, 
+          [ newPlayer.to_json ]
+        ]
+
     elsif req.path.match(/teams/) && req.get?
       iD = req.path.split('/')[2]
       team=Team.find_by(id: iD)
