@@ -45,7 +45,7 @@ class Application
           [ { error: 'Player not found' }.to_json ]
         ]
       end
-    elsif req.path == "/players" && req.delete?
+    elsif req.path.match("/players") && req.delete?
       iD = req.path.split('/')[2]
       begin 
         person=Player.find(iD)
@@ -54,10 +54,6 @@ class Application
       rescue
         return [404,{'Content-Type' => 'application/json'}, [{message: "Player Not Found"}.to_json]]
       end
-      tournaments=Tournament.all
-      return [200, 
-      { 'Content-Type' => 'application/json' }, 
-      [  tournaments.to_json ]]
     elsif req.path.match(/teams/) && req.get?
       iD = req.path.split('/')[2]
       team=Team.find_by(id: iD)
