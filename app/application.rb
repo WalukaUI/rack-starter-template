@@ -100,6 +100,15 @@ class Application
       rescue
         return [404,{'Content-Type' => 'application/json'}, [{message: "Team Not Found"}.to_json]]
       end
+
+    elsif req.path.match("/teams") && req.post?
+      body = JSON.parse(req.body.read)
+      new_team=Team.create(body)
+      return [
+        200, 
+        { 'Content-Type' => 'application/json' }, 
+        [ new_team.to_json ]
+      ]
     elsif req.path == "/tournaments" && req.get?
       tournaments=Tournament.all
         return [200, 
