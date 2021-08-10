@@ -1,9 +1,9 @@
 Team.destroy_all
-# Team.reset_pk_sequence
+
 Player.destroy_all
-# Player.reset_pk_sequence
+
 Tournament.destroy_all
-# Tournament.reset_pk_sequence
+
 
 
 t1 = Team.create(name: "SL", logo_url:"N/A")
