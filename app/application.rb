@@ -109,6 +109,17 @@ class Application
         { 'Content-Type' => 'application/json' }, 
         [ new_team.to_json ]
       ]
+
+    elsif req.path.match('/teams/') && req.patch?
+      id = req.path.split('/')[2]
+      body = JSON.parse(req.body.read)
+      begin
+        team=Team.find(id)
+        team.update(body)
+        return [202, {'Content-Type' => 'application/json'}, [team.to_json]]
+      rescue
+        return [404,{'Content-Type' => 'application/json'}, [{message: "Team Not Found"}.to_json]]
+      end
     elsif req.path == "/tournaments" && req.get?
       tournaments=Tournament.all
         return [200, 
