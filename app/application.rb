@@ -25,18 +25,18 @@ class Application
     elsif req.path.match(/players/) && req.get?
       iD = req.path.split('/')[2]
       player=Player.find_by(id: iD)
-      player_teams=player.team
+      # player_teams=player.team
       if player
-        player_res={
-          name: player.name,
-          age: player.age,
-          skill: player.skill,
-          team: player_teams.name
-        }
+        # player_res={
+        #   name: player.name,
+        #   age: player.age,
+        #   skill: player.skill,
+        #   playing_category: player.playing_category
+        # }
         return [
           200,
           { 'Content-Type' => 'application/json' },
-          [  player_res.to_json ]
+          [  player.to_json ]
         ]
       else
         return [

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_10_190822) do
+ActiveRecord::Schema.define(version: 2021_08_15_050345) do
 
   create_table "players", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 2021_08_10_190822) do
     t.string "playing_category"
     t.string "country"
     t.integer "team_id"
+    t.string "image_url"
+    t.integer "runs"
+    t.integer "wikets"
   end
 
   create_table "team_tournements", force: :cascade do |t|
