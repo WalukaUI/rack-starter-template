@@ -4,6 +4,8 @@ class Application
     res = Rack::Response.new
     req = Rack::Request.new(env)
 
+# ----------------All gets---------------------------
+
     if req.path == "/players" && req.get?
       players=Player.all
       return [200, 
@@ -22,17 +24,12 @@ class Application
       { 'Content-Type' => 'application/json' }, 
       [  tournaments.to_json ]]
 
+# ----------------Players---------------------------
+
     elsif req.path.match(/players/) && req.get?
       iD = req.path.split('/')[2]
       player=Player.find_by(id: iD)
-      # player_teams=player.team
       if player
-        # player_res={
-        #   name: player.name,
-        #   age: player.age,
-        #   skill: player.skill,
-        #   playing_category: player.playing_category
-        # }
         return [
           200,
           { 'Content-Type' => 'application/json' },
@@ -73,6 +70,8 @@ class Application
           { 'Content-Type' => 'application/json' }, 
           [ newPlayer.to_json ]
         ]
+
+# ----------------Teams---------------------------
 
     elsif req.path.match(/teams/) && req.get?
       iD = req.path.split('/')[2]
@@ -120,15 +119,40 @@ class Application
       rescue
         return [404,{'Content-Type' => 'application/json'}, [{message: "Team Not Found"}.to_json]]
       end
+
+
+
+# ----------------Tournamnets---------------------------
+
     elsif req.path == "/tournaments" && req.get?
       tournaments=Tournament.all
         return [200, 
         { 'Content-Type' => 'application/json' }, 
         [ tournaments.to_json ]]
+
+
+      elsif req.path.match(/tournaments/) && req.get?
+        id = req.path.split('/')[2]
+        tournamnet_info=Tournament.find(id)
+        teams_of_the_tournamnet=tournamnet_info.teams
+        if teams_of_the_tournamnet
+          return [
+            200,
+            { 'Content-Type' => 'application/json' },
+            [  teams_of_the_tournamnet.to_json ]
+          ]
+        else
+          return [
+            204, 
+            { 'Content-Type' => 'application/json' },
+            [ { error: 'Teams of the Tournament not found' }.to_json ]
+          ]
+        end
+
     else
       res.write "Path Not Found"
     end
-
+   
     res.finish
   end
 
