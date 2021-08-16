@@ -12,9 +12,9 @@ t2 = Team.create(name: "IND", logo_url:"N/A")
 t3 = Team.create(name: "AUS", logo_url:"N/A")
 t4 = Team.create(name: "PAK", logo_url:"N/A")
 
-tou1 = Tournament.create(name: "T20", venue: "Colombo")
-tou2 = Tournament.create(name: "ODI", venue: "Kandy")
-tou3 = Tournament.create(name: "Test", venue: "NYC")
+tou1 = Tournament.create(name: "T20", venue: "Colombo",image_url:"https://cricketcrowd.com/images/ground/ground_164_0225163633.jpg")
+tou2 = Tournament.create(name: "ODI", venue: "Kandy",image_url:"https://upload.wikimedia.org/wikipedia/commons/c/ca/Mahinda_Rajapaksa_International_Cricket_Stadium.jpg")
+tou3 = Tournament.create(name: "Test", venue: "NYC",image_url:"https://www.cricket.com.au/~/-/media/News/2016/06/4citi_nyc.ashx?w=1600")
 
 randomTeam=[t1.id,t2.id,t3.id,t4.id]
 skills=["Allrounder","Batsman","Bowler"]
@@ -30,26 +30,6 @@ countries=["SL","IND","AUS","PAK"]
                 country: countries.sample
                 )
   end
-# p1 = Player.create(name: Faker::Name.first_name, age: 25, skill: "Allrounder", team_id: t1.id)
-# p2 = Player.create(name: Faker::Name.first_name, age: 28, skill: "Batsman"   , team_id: t2.id)
-# p3 = Player.create(name: Faker::Name.first_name, age: 22, skill: "Allrounder", team_id: t1.id)
-# p4 = Player.create(name: Faker::Name.first_name, age: 20, skill: "Batsman"   , team_id: t2.id)
-# p5 = Player.create(name: Faker::Name.first_name, age: 28, skill: "Allrounder", team_id: t2.id)
-# p6 = Player.create(name: Faker::Name.first_name, age: 29, skill: "Allrounder", team_id: t3.id)
-# p7 = Player.create(name: Faker::Name.first_name, age: 30, skill: "Bowler"    , team_id: t4.id)
-# p8 = Player.create(name: Faker::Name.first_name, age: 35, skill: "Batsman"   , team_id: t1.id)
-# p9 = Player.create(name: Faker::Name.first_name, age: 33, skill: "Allrounder", team_id: t2.id)
-# p10 = Player.create(name: Faker::Name.first_name, age:22, skill: "Bowler"    , team_id: t3.id)
-# p11 = Player.create(name: Faker::Name.first_name, age: 25, skill: "Allrounder", team_id: t1.id)
-# p12 = Player.create(name: Faker::Name.first_name, age: 28, skill: "Batsman"  , team_id: t1.id)
-# p13 = Player.create(name: Faker::Name.first_name, age: 22, skill: "Allrounder", team_id: t2.id)
-# p14 = Player.create(name: Faker::Name.first_name, age: 20, skill: "Batsman"  , team_id: t3.id)
-# p15 = Player.create(name: Faker::Name.first_name, age: 28, skill: "Allrounder",team_id: t4.id)
-# p16 = Player.create(name: Faker::Name.first_name, age: 29, skill: "Allrounder", team_id: t4.id)
-# p17 = Player.create(name: Faker::Name.first_name, age: 30, skill: "Bowler"   , team_id: t2.id)
-# p18 = Player.create(name: Faker::Name.first_name, age: 35, skill: "Batsman"  , team_id: t3.id)
-# p19 = Player.create(name: Faker::Name.first_name, age: 33, skill: "Allrounder", team_id: t4.id)
-# p20 = Player.create(name: Faker::Name.first_name, age:22, skill: "Bowler"    , team_id: t3.id)
 
 j1 =TeamTournement.create(team_id: t4.id,tournament_id: tou1.id)
 j2 =TeamTournement.create(team_id: t3.id,tournament_id: tou1.id)
